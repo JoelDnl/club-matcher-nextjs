@@ -18,7 +18,7 @@ export default function Header() {
         <h4 className="text-base font-semibold pb-2">
           Take our quiz to find the right fit for you!
         </h4>
-        <Button className="w-32">
+        <Button className="w-32" type="button">
           <a href="/quiz">Start Quiz</a>
         </Button>
       </div>
