@@ -1,10 +1,22 @@
+"use client";
+
 import Button from "@/components/ui/Button";
 import Header from "@/components/Header";
 import Card from "@/components/ui/Card";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { useRouter } from "next/navigation";
+import { SyntheticEvent } from "react";
 
 export default function Home() {
+  const { push } = useRouter();
+
+  const handleSubmit = (e: SyntheticEvent) => {
+    e.preventDefault();
+    push("/quiz");
+    return;
+  };
+
   return (
     <main>
       <Navbar />
@@ -56,9 +68,11 @@ export default function Home() {
           <h2 className="text-xl md:text-2xl font-semibold">
             Find Your New Club:
           </h2>
-          <Button className="w-32" type="button">
-            <a href="/quiz">Start Quiz</a>
-          </Button>
+          <form className="" onSubmit={handleSubmit}>
+            <Button className="w-32" type="submit">
+              Start Quiz
+            </Button>
+          </form>
         </Card>
       </div>
       <Footer />
