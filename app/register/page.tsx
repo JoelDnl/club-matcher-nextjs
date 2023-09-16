@@ -13,7 +13,7 @@ import { FaLongArrowAltLeft, FaLongArrowAltRight } from "react-icons/fa";
 import QuizRegister from "@/components/quiz/QuizRegister";
 import { useQuizContext } from "@/context/QuizContext";
 import { Club, createClub } from "@/lib/club";
-import TagModal from "@/components/TagModal";
+import TagModal from "@/components/quiz/tag/TagModal";
 import { tags } from "@/lib/tags";
 import { errorToast } from "@/components/ui/Toast";
 import { FirebaseError } from "firebase/app";
@@ -38,7 +38,10 @@ export default function Login() {
   const [tag, setTag] = useState("");
 
   useEffect(() => {
-    if (auth.user.uid) router.push("/profile");
+    if (auth.user.uid) {
+      router.push("/profile");
+      return;
+    }
   }, []);
 
   const handleRegister = async (e: SyntheticEvent) => {
@@ -79,9 +82,16 @@ export default function Login() {
         return;
       }
 
-      if (description.length < 10) {
+      if (description.length < 50) {
         errorToast(
-          "Please enter a description with a minimum of 10 characters."
+          "Please enter a description with a minimum of 50 characters."
+        );
+        return;
+      }
+
+      if (description.length > 200) {
+        errorToast(
+          "Please enter a description with a maximum of 200 characters."
         );
         return;
       }
@@ -97,30 +107,28 @@ export default function Login() {
       }
 
       try {
-        await auth
-          .signUp(email, password)
-          .then(() => {
-            setRegisterLoading(true);
-            const registerData: Club = {
-              name: name,
-              email: email,
-              storefront: storefront,
-              westernlink: westernLink,
-              description: description,
-              tag: tag,
-              quiz: quizData.splice(1),
-            };
+        await auth.signUp(email, password).then(() => {
+          setRegisterLoading(true);
+          const registerData: Club = {
+            name: name,
+            email: email,
+            storefront: storefront,
+            westernlink: westernLink,
+            description: description,
+            tag: tag,
+            quiz: quizData.splice(1),
+          };
 
-            return createClub({ data: registerData });
-          })
-          .then((res) => {
+          return createClub({ data: registerData }).then(() => {
             router.push("/profile");
           });
+        });
       } catch (error: unknown) {
         if (error instanceof FirebaseError) {
           errorToast(
             "That email already has a profile. Please try again with a different one."
           );
+          setRegisterStage(0);
         }
       }
 
@@ -142,7 +150,7 @@ export default function Login() {
           {registerStage == 0 ? (
             <div className="">
               <input
-                className="shadow appearance-none border border-gray_dark rounded w-full py-2 px-3 text-black leading-tight focus:outline-none focus:shadow-outline mb-4"
+                className="shadow appearance-none border-2 border-western rounded w-full py-2 px-3 text-black leading-tight focus:outline-none focus:shadow-outline mb-4"
                 id="email"
                 type="text"
                 placeholder="Email"
@@ -150,7 +158,7 @@ export default function Login() {
                 onChange={(e) => setEmail(e.target.value)}
               />
               <input
-                className="shadow appearance-none border border-gray_dark rounded w-full py-2 px-3 text-black leading-tight focus:outline-none focus:shadow-outline mb-4"
+                className="shadow appearance-none border-2 border-western rounded w-full py-2 px-3 text-black leading-tight focus:outline-none focus:shadow-outline mb-4"
                 id="password"
                 type="password"
                 placeholder="Password"
@@ -158,7 +166,7 @@ export default function Login() {
                 onChange={(e) => setPassword(e.target.value)}
               />
               <input
-                className="shadow appearance-none border border-gray_dark rounded w-full py-2 px-3 text-black leading-tight focus:outline-none focus:shadow-outline mb-4"
+                className="shadow appearance-none border-2 border-western rounded w-full py-2 px-3 text-black leading-tight focus:outline-none focus:shadow-outline mb-4"
                 id="passwordConfirm"
                 type="password"
                 placeholder="Confirm Password"
@@ -166,7 +174,7 @@ export default function Login() {
                 onChange={(e) => setPasswordConfirm(e.target.value)}
               />
               <input
-                className="shadow appearance-none border border-gray_dark rounded w-full py-2 px-3 text-black leading-tight focus:outline-none focus:shadow-outline mb-4"
+                className="shadow appearance-none border-2 border-western rounded w-full py-2 px-3 text-black leading-tight focus:outline-none focus:shadow-outline mb-4"
                 id="registerCode"
                 type="text"
                 placeholder="Registration Code"
@@ -180,7 +188,7 @@ export default function Login() {
                 <div className="">
                   <div className="grid grid-cols-3 gap-2">
                     <input
-                      className="col-span-2 shadow appearance-none border border-gray_dark rounded w-full py-2 px-3 text-black leading-tight focus:outline-none focus:shadow-outline mb-4"
+                      className="col-span-2 shadow appearance-none border-2 border-western rounded w-full py-2 px-3 text-black leading-tight focus:outline-none focus:shadow-outline mb-4"
                       id="name"
                       type="text"
                       placeholder="Club Name"
@@ -196,14 +204,14 @@ export default function Login() {
                   </div>
 
                   <textarea
-                    className="whitespace-normal resize-none shadow appearance-none border border-gray_dark rounded w-full py-6 px-3  text-black leading-tight focus:outline-none focus:shadow-outline mb-4"
+                    className="whitespace-normal resize-none shadow appearance-none border-2 border-western rounded w-full py-6 px-3 text-black leading-tight focus:outline-none focus:shadow-outline mb-4"
                     id="description"
                     placeholder="Description"
                     value={description}
                     onChange={(e) => setDescription(e.target.value)}
                   />
                   <input
-                    className="shadow appearance-none border border-gray_dark rounded w-full py-2 px-3 text-black leading-tight focus:outline-none focus:shadow-outline mb-4"
+                    className="shadow appearance-none border-2 border-western rounded w-full py-2 px-3 text-black leading-tight focus:outline-none focus:shadow-outline mb-4"
                     id="storefront"
                     type="text"
                     placeholder="Storefront URL"
@@ -211,7 +219,7 @@ export default function Login() {
                     onChange={(e) => setStorefront(e.target.value)}
                   />
                   <input
-                    className="shadow appearance-none border border-gray_dark rounded w-full py-2 px-3 text-black leading-tight focus:outline-none focus:shadow-outline mb-4"
+                    className="shadow appearance-none border-2 border-western rounded w-full py-2 px-3 text-black leading-tight focus:outline-none focus:shadow-outline mb-4"
                     id="westerlink"
                     type="text"
                     placeholder="WesternLink URL"
@@ -265,7 +273,7 @@ export default function Login() {
                     >
                       Register
                       {registerLoading ? (
-                        <Spinner className="" size={4} />
+                        <Spinner className="" size={"4"} />
                       ) : (
                         <></>
                       )}
