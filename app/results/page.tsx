@@ -47,9 +47,9 @@ export default function Results() {
   }, []);
 
   return (
-    <main className="justify-center text-center pt-6 sm:pt-8 px-2">
+    <main className="justify-center text-center pt-6 sm:mt-8">
       <div>
-        <h1 className="justify-center items-center text-5xl font-semibold text-black hidden sm:inline-flex">
+        <h1 className="justify-center items-center text-5xl font-bold text-black hidden sm:inline-flex">
           Your results are in
           <Typewriter
             options={{
@@ -60,7 +60,7 @@ export default function Results() {
             }}
           />
         </h1>
-        <h1 className="justify-center text-4xl font-semibold text-black inline-flex sm:hidden">
+        <h1 className="justify-center text-4xl font-bold text-black inline-flex sm:hidden">
           Your results:
         </h1>
         <ResultsTabGroup loading={loading} data={similarClubs} />

@@ -50,13 +50,13 @@ export default function ResultsTabPanel({
             </div>
             <ProgressBar percent={Math.trunc(matchPercent)} />
           </div>
-          <div className="justify-center items-center text-black text-opacity-90 text-lg sm:text-xl font-medium mt-4 sm:mt-0 w-11/12 sm:max-w-4xl mx-auto">
+          <div className="justify-center items-center text-black text-opacity-90 text-lg sm:text-xl font-normal tracking-wide mt-4 sm:mt-0 w-11/12 sm:max-w-4xl mx-auto">
             {loading ? "Loading description..." : clubData.description}
           </div>
         </div>
       </TabTransition>
       <TabTransition tabIndex={tabIndex} index={rank - 1}>
-        <div className="grid grid-cols-3 w-fit lg:w-1/2 mx-auto mt-12 sm:mt-12 gap-4">
+        <div className="grid grid-cols-3 w-fit lg:w-1/2 mx-auto mt-12 sm:mt-16 gap-4">
           <a
             href={loading ? "" : `mailto:${clubData.email}`}
             className={aClassName}

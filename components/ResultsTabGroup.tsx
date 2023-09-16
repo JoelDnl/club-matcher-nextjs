@@ -23,7 +23,7 @@ export default function ResultsTabGroup({
   const ranks: number[] = [0, 1, 2];
 
   return (
-    <div className="mx-auto w-11/12 sm:max-w-6xl px-2 sm:px-8 pt-6 pb-2 sm:py-8">
+    <div className="mx-auto w-11/12 sm:max-w-6xl px-2 sm:px-8 pt-6 pb-0 sm:py-8">
       <Tab.Group selectedIndex={tabIndex} onChange={setTabIndex}>
         <Tab.List className="flex justify-center">
           {ranks.map((index) => {
@@ -45,7 +45,7 @@ export default function ResultsTabGroup({
             );
           })}
         </Tab.List>
-        <Tab.Panels className="mt-4">
+        <Tab.Panels className="mt-4 sm:mt-6">
           {data.length > 0
             ? data.map((club, index) => {
                 return (
