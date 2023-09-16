@@ -3,8 +3,7 @@ import { cosineSimilarity } from "@/lib/math";
 import { collection, getDocs, query } from "firebase/firestore";
 import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
-import { getClub } from "../club/route";
-import { NULL_CLUB_WITH_SCORE } from "@/lib/club";
+import { NULL_CLUB_WITH_SCORE, getClub } from "@/lib/club";
 
 export async function POST(request: Request) {
   const data: number[] = await request.json();
