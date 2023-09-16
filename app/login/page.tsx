@@ -60,7 +60,7 @@ export default function Login() {
         </h4>
         <form className="pt-4 w-full sm:w-96" onSubmit={handleLogin}>
           <input
-            className="shadow appearance-none border border-gray_dark rounded w-full py-2 px-3 text-black leading-tight focus:outline-none focus:shadow-outline mb-4"
+            className="shadow appearance-none border-2 border-western rounded w-full py-2 px-3 text-black leading-tight focus:outline-none focus:shadow-outline mb-4"
             id="email"
             type="text"
             placeholder="Email"
@@ -68,7 +68,7 @@ export default function Login() {
             onChange={(e) => setEmail(e.target.value)}
           />
           <input
-            className="shadow appearance-none border border-gray_dark rounded w-full py-2 px-3 text-black leading-tight focus:outline-none focus:shadow-outline mb-4"
+            className="shadow appearance-none border-2 border-western rounded w-full py-2 px-3 text-black leading-tight focus:outline-none focus:shadow-outline mb-4"
             id="password"
             type="password"
             placeholder="Password"
@@ -78,7 +78,7 @@ export default function Login() {
           <div className="items-center justify-between space-y-3">
             <Button className="py-2 px-4 w-[100%]" type="submit">
               Sign In
-              {loginLoading ? <Spinner className="" size={4} /> : <></>}
+              {loginLoading ? <Spinner className="" size={"4"} /> : <></>}
             </Button>
             <a
               className="inline-block align-baseline font-bold text-sm text-western hover:text-black transition-colors"
