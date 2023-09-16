@@ -1,17 +1,25 @@
 import { db } from "@/lib/firebase";
-import { doc, getDoc } from "firebase/firestore";
+import { collection, getDocs, query, where } from "firebase/firestore";
 import { NextResponse } from "next/server";
 
 export async function POST(request: Request) {
-  const data: string = await request.json();
-
-  const docRef = doc(db, "clubs", data);
-  const docSnap = await getDoc(docRef);
-
-  let clubData = {};
-  if (docSnap.exists()) {
-    clubData = docSnap.data();
-  }
+  const data = await request.json();
+  const clubData = getClub(data);
 
   return NextResponse.json({ data: clubData });
+}
+
+export async function getClub(data: any) {
+  const rawValue = JSON.parse(data)["value"];
+  const docRef = query(
+    collection(db, "clubs"),
+    where("email", "==", JSON.parse(rawValue)["email"])
+  );
+  const docSnap = await getDocs(docRef);
+  const clubData = {
+    matchScore: JSON.parse(rawValue)["matchScore"],
+    ...docSnap.docs[0].data(),
+  };
+
+  return clubData;
 }
