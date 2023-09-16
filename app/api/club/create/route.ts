@@ -6,7 +6,7 @@ export async function POST(request: Request) {
   const quizData: {} = await request.json();
   const data = quizData;
   try {
-    await addDoc(collection(db, "clubs"), data);
+    await addDoc(collection(db, "clubs"), quizData);
   } catch (err) {
     throw err;
   }

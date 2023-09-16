@@ -7,10 +7,13 @@ import { useEffect } from "react";
 
 export default function Profile() {
   const auth = useAuth();
-  const router = useRouter();
+  const { push } = useRouter();
 
   useEffect(() => {
-    if (!auth.user.uid) router.push("/login");
+    if (!auth.user.uid) {
+      push("/login");
+      return;
+    }
   }, [auth.user.uid]);
 
   return (
