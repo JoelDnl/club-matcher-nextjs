@@ -1,14 +1,15 @@
 "use client";
 
-import { Club, formatFirestoreClub } from "@/lib/club";
-import { getCookie, hasCookie, setCookie } from "cookies-next";
+import { NULL_CLUB } from "@/lib/club";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
 export default function Results() {
   const { push } = useRouter();
   const params = useSearchParams();
+
   const clubId = params.get("id");
+  const [club, setClub] = useState(NULL_CLUB);
   const [loading, setLoading] = useState(true);
 
   const fetchClubData = async () => {
@@ -20,7 +21,7 @@ export default function Results() {
       body: JSON.stringify(clubId),
     });
     const result = await res.json();
-    setCookie("clubData", result.data, { maxAge: 60 * 6 * 24 });
+    setClub(result.data);
 
     return result.data;
   };
@@ -34,7 +35,6 @@ export default function Results() {
         push("/quiz");
         return;
       }
-      console.log(getCookie("clubData"));
 
       setLoading(false);
     })();
