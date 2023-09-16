@@ -11,6 +11,16 @@ export interface Club {
   quiz: number[];
 }
 
+export const NULL_CLUB: Club = {
+  name: "",
+  email: null,
+  storefront: "",
+  westernlink: "",
+  description: "",
+  tag: "",
+  quiz: [],
+};
+
 export async function createClub({ data }: { data: Club }) {
   try {
     await addDoc(collection(db, "clubs"), data);
@@ -20,16 +30,7 @@ export async function createClub({ data }: { data: Club }) {
 }
 
 export function formatFirestoreClub(docData: DocumentData) {
-  console.log(docData);
-  let clubData: Club = {
-    name: "",
-    email: null,
-    storefront: "",
-    westernlink: "",
-    description: "",
-    tag: "",
-    quiz: [],
-  };
+  let clubData: Club = NULL_CLUB;
 
   clubData.name = docData["name"];
   clubData.email = docData["email"];
