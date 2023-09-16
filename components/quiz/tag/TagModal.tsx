@@ -3,6 +3,9 @@ import { Dispatch, Fragment, SetStateAction, useState } from "react";
 import TagRadio from "./TagRadio";
 import { HiCursorClick } from "react-icons/hi";
 import { FaCheck } from "react-icons/fa";
+import { FaRegHandPointer } from "react-icons/fa";
+import { LuPointer } from "react-icons/lu";
+import { LiaHandPointer } from "react-icons/lia";
 
 export default function TagModal({
   buttonClass,
@@ -23,13 +26,13 @@ export default function TagModal({
         <button
           type="button"
           onClick={() => setOpen(true)}
-          className={`bg-white text-black text-center border border-gray_dark hover:border-western hover:text-western rounded px-3 py-2 leading-tight focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 ${buttonClass} ${
-            selected == "" ? "text-opacity-50" : ""
+          className={`bg-white text-black text-center border-2 border-western hover:text-western rounded px-3 py-2 leading-tight focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 ${buttonClass} ${
+            selected == "" ? "text-opacity-60" : ""
           }`}
         >
           Tag{" "}
           {selected == "" ? (
-            <HiCursorClick className="inline-flex ml-[2px] text-lg" />
+            <LuPointer className="inline-flex ml-[2px] text-lg" />
           ) : (
             <FaCheck className="inline-flex ml-[2px] text-lg" />
           )}
