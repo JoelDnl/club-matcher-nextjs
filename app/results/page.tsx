@@ -1,57 +1,70 @@
 "use client";
 
-import { NULL_CLUB } from "@/lib/club";
-import { useRouter, useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import ResultsTabGroup from "@/components/ResultsTabGroup";
+import { NULL_CLUB_WITH_SCORE } from "@/lib/club";
+import { useRouter } from "next/navigation";
+import { useEffect, useRef, useState } from "react";
+import Typewriter from "typewriter-effect";
 
 export default function Results() {
-  const { push } = useRouter();
-  const params = useSearchParams();
-
-  const clubId = params.get("id");
-  const [club, setClub] = useState(NULL_CLUB);
+  const [similarClubs, setSimilarClubs] = useState([NULL_CLUB_WITH_SCORE]);
+  const [filled, setFilled] = useState(true);
   const [loading, setLoading] = useState(true);
+  const { push } = useRouter();
 
-  const fetchClubData = async () => {
-    const res = await fetch(`/api/club`, {
-      method: "POST",
+  const fetchSimilarClubs = async () => {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/match`, {
+      method: "GET",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(clubId),
     });
     const result = await res.json();
-    setClub(result.data);
+
+    setFilled(
+      JSON.stringify(result.data) === JSON.stringify(NULL_CLUB_WITH_SCORE)
+        ? false
+        : true
+    );
+    setSimilarClubs(result.data);
 
     return result.data;
   };
 
   useEffect(() => {
-    if (!clubId) push("/quiz"); // if no result id, send to quiz page
-
     (async () => {
-      const clubData = await fetchClubData();
-      if (JSON.stringify(clubData) === "{}") {
-        push("/quiz");
-        return;
-      }
+      const similarities = await fetchSimilarClubs().then(() => {
+        if (!filled) {
+          push("/quiz");
+          return;
+        }
+      });
 
       setLoading(false);
     })();
 
     return () => {};
-  }, [clubId]);
+  }, []);
 
   return (
-    <main className="text-center">
-      {loading ? (
-        <></>
-      ) : (
-        <p>
-          <b>ID: </b>
-          {clubId}
-        </p>
-      )}
+    <main className="justify-center text-center pt-6 sm:pt-8 px-2">
+      <div>
+        <h1 className="justify-center items-center text-5xl font-semibold text-black hidden sm:inline-flex">
+          Your results are in
+          <Typewriter
+            options={{
+              strings: ["..."],
+              autoStart: true,
+              loop: true,
+              cursor: "",
+            }}
+          />
+        </h1>
+        <h1 className="justify-center text-4xl font-semibold text-black inline-flex sm:hidden">
+          Your results:
+        </h1>
+        <ResultsTabGroup loading={loading} data={similarClubs} />
+      </div>
     </main>
   );
 }
