@@ -37,3 +37,13 @@
     opacity: 1;
   }
 }
+
+/* HIGHLIGHT COLOUR */
+::-moz-selection {
+  color: #fff;
+  background: #4f2784;
+}
+::selection {
+  color: #fff;
+  background: #4f2784;
+}
