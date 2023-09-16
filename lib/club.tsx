@@ -11,6 +11,10 @@ export interface Club {
   quiz: number[];
 }
 
+export interface ClubWithScore extends Club {
+  matchScore: 0;
+}
+
 export const NULL_CLUB: Club = {
   name: "",
   email: null,
@@ -19,6 +23,17 @@ export const NULL_CLUB: Club = {
   description: "",
   tag: "",
   quiz: [],
+};
+
+export const NULL_CLUB_WITH_SCORE: ClubWithScore = {
+  name: "",
+  email: null,
+  storefront: "",
+  westernlink: "",
+  description: "",
+  tag: "",
+  quiz: [],
+  matchScore: 0,
 };
 
 export async function createClub({ data }: { data: Club }) {
