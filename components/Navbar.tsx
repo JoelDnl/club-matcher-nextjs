@@ -27,12 +27,12 @@ export default function Navbar() {
           {!auth.loading ? (
             <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
               {auth.user.uid ? (
-                <div className="inline-flex space-x-4">
+                <div className="inline-flex gap-2 sm:gap-4">
                   <a
                     href="/profile"
                     className="bg-white border-2 border-black text-black hover:bg-black hover:text-white rounded px-2 py-1 text-base font-semibold transition-colors cursor-pointer fade-in"
                   >
-                    Club Profile
+                    Profile
                   </a>
                   <div
                     onClick={() => auth.signOut()}
