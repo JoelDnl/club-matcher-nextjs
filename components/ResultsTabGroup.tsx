@@ -1,11 +1,8 @@
 import { useState } from "react";
-import { Tab, Transition } from "@headlessui/react";
+import { Tab } from "@headlessui/react";
 import { ClubWithScore, NULL_CLUB_WITH_SCORE } from "@/lib/club";
-import ResultsTabPanel from "./ResultsTabPanel";
-import { RiStarSmileFill } from "react-icons/ri";
-import { PiStarBold } from "react-icons/pi";
-import { BsBookmarkStarFill, BsListStars } from "react-icons/bs";
-import { FaMedal, FaRankingStar, FaStar } from "react-icons/fa6";
+import ResultsTabPanel from "@/components/ResultsTabPanel";
+import { FaStar } from "react-icons/fa6";
 
 export default function ResultsTabGroup({
   loading,
