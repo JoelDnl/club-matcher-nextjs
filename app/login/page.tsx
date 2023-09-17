@@ -76,9 +76,13 @@ export default function Login() {
             onChange={(e) => setPassword(e.target.value)}
           />
           <div className="items-center justify-between space-y-3">
-            <Button className="py-2 px-4 w-[100%]" type="submit">
+            <Button className="py-2 px-2 w-[100%]" type="submit">
               Sign In
-              {loginLoading ? <Spinner className="" size={"4"} /> : <></>}
+              {loginLoading ? (
+                <Spinner className="inline-flex" size={"5"} />
+              ) : (
+                <></>
+              )}
             </Button>
             <a
               className="inline-block align-baseline font-bold text-sm text-western hover:text-black transition-colors"

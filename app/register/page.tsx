@@ -286,12 +286,12 @@ export default function Login() {
                       </Button>
                     </span>
                     <Button
-                      className="py-2 px-4 w-[45%] sm:w-[48.5%]"
+                      className="py-2 px-2 w-[45%] sm:w-[48.5%]"
                       type="submit"
                     >
                       Register
                       {registerLoading ? (
-                        <Spinner className="" size={"4"} />
+                        <Spinner className="inline-flex" size={"5"} />
                       ) : (
                         <></>
                       )}
