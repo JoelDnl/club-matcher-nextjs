@@ -43,6 +43,8 @@ export const NULL_CLUB_WITH_SCORE: ClubWithScore = {
   matchScore: 0,
 };
 
+export const MAX_DESCRIPTION_LENGTH: number = 300;
+
 export async function getClub(data: any) {
   const rawValue = JSON.parse(data)["value"];
   const docRef = query(
