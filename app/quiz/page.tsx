@@ -15,7 +15,7 @@ export default function Quiz() {
 
   const [matching, setMatching] = useState(false);
 
-  const handleSubmit = async (e: SyntheticEvent) => {
+  async function handleSubmit(e: SyntheticEvent) {
     e.preventDefault();
 
     if (isFilled()) {
@@ -37,7 +37,7 @@ export default function Quiz() {
       errorToast("Please answer every question.");
       return;
     }
-  };
+  }
 
   return (
     <main className="text-center">

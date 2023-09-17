@@ -10,11 +10,11 @@ import { SyntheticEvent } from "react";
 export default function Header() {
   const { push } = useRouter();
 
-  const handleSubmit = (e: SyntheticEvent) => {
+  function handleSubmit(e: SyntheticEvent) {
     e.preventDefault();
     push("/quiz");
     return;
-  };
+  }
 
   return (
     <div className="min-w-screen h-[100vh] sm:h-[80vh] text-center items-center flex flex-col md:flex-row md:justify-center px-4 md:px-16 mt-0 gap-x-10">

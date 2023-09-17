@@ -45,7 +45,7 @@ export default function Login() {
     }
   }, []);
 
-  const handleRegister = async (e: SyntheticEvent) => {
+  async function handleRegister(e: SyntheticEvent) {
     e.preventDefault();
     toast.dismiss();
 
@@ -152,7 +152,7 @@ export default function Login() {
 
       return;
     }
-  };
+  }
 
   return (
     <div className="flex flex-col min-w-screen text-center items-center md:justify-center px-8 mt-12 sm:mt-16 gap-x-8 ">

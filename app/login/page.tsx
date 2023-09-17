@@ -9,6 +9,7 @@ import { useAuth } from "@/lib/auth";
 import { SyntheticEvent, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Spinner from "@/components/ui/Spinner";
+import { errorToast } from "@/components/ui/Toast";
 
 export default function Login() {
   const router = useRouter();
@@ -22,7 +23,7 @@ export default function Login() {
     if (auth.user.uid) router.push("/profile");
   }, []);
 
-  const handleLogin = async (e: SyntheticEvent) => {
+  async function handleLogin(e: SyntheticEvent) {
     e.preventDefault();
 
     try {
@@ -35,20 +36,12 @@ export default function Login() {
       toast.dismiss();
       loginErrorToast();
     }
-  };
+  }
 
-  const loginErrorToast = () => {
-    toast.error("Please try again using valid credentials.", {
-      position: "top-center",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-    });
-  };
+  function loginErrorToast() {
+    errorToast("Please try again using valid credentials.");
+    return;
+  }
 
   return (
     <div className="flex flex-col min-w-screen text-center items-center md:justify-center px-8 mt-24 sm:mt-28 gap-x-8 ">

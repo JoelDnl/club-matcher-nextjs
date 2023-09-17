@@ -12,7 +12,7 @@ export default function Results() {
   const [loading, setLoading] = useState(true);
   const { push } = useRouter();
 
-  const fetchSimilarClubs = async () => {
+  async function fetchSimilarClubs() {
     const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/match`, {
       method: "GET",
       headers: {
@@ -29,7 +29,7 @@ export default function Results() {
     setSimilarClubs(result.data);
 
     return result.data;
-  };
+  }
 
   useEffect(() => {
     (async () => {

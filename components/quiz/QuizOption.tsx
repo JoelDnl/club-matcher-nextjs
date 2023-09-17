@@ -9,7 +9,7 @@ export default function QuizOption({
   optId: number;
   option: string;
 }) {
-  const handleSelect = () => {
+  function handleSelect() {
     // get the element by id and use scrollIntoView
     const elem =
       quesId == QuizData.length
@@ -18,7 +18,7 @@ export default function QuizOption({
     elem?.scrollIntoView({
       behavior: "smooth",
     });
-  };
+  }
 
   return (
     <div
