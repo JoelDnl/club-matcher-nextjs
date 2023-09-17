@@ -4,6 +4,7 @@ import { ToastContainer } from "react-toastify";
 
 import "react-toastify/dist/ReactToastify.min.css";
 import "@/app/globals.css";
+import { Analytics } from "@vercel/analytics/react";
 
 export const metadata: Metadata = {
   title: "USC Club Matcher",
@@ -21,6 +22,7 @@ export default function RootLayout({
         <AuthProvider>
           {children}
           <ToastContainer bodyClassName="toastBody" />
+          <Analytics />
         </AuthProvider>
       </body>
     </html>
