@@ -12,11 +12,12 @@ import Spinner from "@/components/ui/Spinner";
 import { FaLongArrowAltLeft, FaLongArrowAltRight } from "react-icons/fa";
 import QuizRegister from "@/components/quiz/QuizRegister";
 import { useQuizContext } from "@/context/QuizContext";
-import { Club, createClub } from "@/lib/club";
+import { Club, MAX_DESCRIPTION_LENGTH, createClub } from "@/lib/club";
 import TagModal from "@/components/quiz/tag/TagModal";
 import { tags } from "@/lib/tags";
 import { errorToast } from "@/components/ui/Toast";
 import { FirebaseError } from "firebase/app";
+import { isValidHttpUrl } from "@/lib/utils";
 
 export default function Login() {
   const router = useRouter();
@@ -55,17 +56,19 @@ export default function Login() {
       }
 
       if (password.length < 6) {
-        errorToast("Please enter a password with a minimum of 6 characters.");
+        errorToast("Please provide a password with a minimum of 6 characters.");
         return;
       }
 
       if (password != passwordConfirm) {
-        errorToast("The passwords you entered do not match. Please try again.");
+        errorToast(
+          "The passwords you provided do not match. Please try again."
+        );
         return;
       }
 
       if (registerCode != process.env.NEXT_PUBLIC_REGISTRATION_CODE) {
-        errorToast("Please enter a valid registration code.");
+        errorToast("Please provide a valid registration code.");
         return;
       }
 
@@ -73,26 +76,38 @@ export default function Login() {
       return;
     } else if (registerStage == 1) {
       if (name.length < 3) {
-        errorToast("Please enter a club name with a minimum of 3 characters.");
+        errorToast(
+          "Please provide a club name with a minimum of 3 characters."
+        );
         return;
       }
 
       if (tag.length < 1) {
-        errorToast("Please select a club category tag.");
+        errorToast("Please provide a club category tag.");
         return;
       }
 
       if (description.length < 50) {
         errorToast(
-          "Please enter a description with a minimum of 50 characters."
+          "Please provide a description with a minimum of 50 characters."
         );
         return;
       }
 
-      if (description.length > 200) {
+      if (description.length > MAX_DESCRIPTION_LENGTH) {
         errorToast(
-          "Please enter a description with a maximum of 200 characters."
+          "Please provide a description with a maximum of 200 characters."
         );
+        return;
+      }
+
+      if (!isValidHttpUrl(storefront)) {
+        errorToast("Please provide a valid HTTP URL for the storefront.");
+        return;
+      }
+
+      if (!isValidHttpUrl(westernLink)) {
+        errorToast("Please provide a valid HTTP URL for WesternLink.");
         return;
       }
 
@@ -120,7 +135,9 @@ export default function Login() {
           };
 
           return createClub({ data: registerData }).then(() => {
+            setRegisterStage(2);
             router.push("/profile");
+            return;
           });
         });
       } catch (error: unknown) {
@@ -129,6 +146,7 @@ export default function Login() {
             "That email already has a profile. Please try again with a different one."
           );
           setRegisterStage(0);
+          return;
         }
       }
 
@@ -140,9 +158,7 @@ export default function Login() {
     <div className="flex flex-col min-w-screen text-center items-center md:justify-center px-8 mt-12 sm:mt-16 gap-x-8 ">
       <Image src={logo} alt="Western USC" className="m-4 w-24 sm:w-32" />
       <div className="space-y-2 items-center text-center md:items-start">
-        <h1 className="text-2xl lg:text-3xl font-semibold">
-          Club Registration
-        </h1>
+        <h1 className="text-2xl lg:text-3xl font-bold">Club Registration</h1>
         <h4 className="text-base font-normal">
           Create your club&apos;s quiz profile and links.
         </h4>
@@ -204,7 +220,9 @@ export default function Login() {
                   </div>
 
                   <textarea
-                    className="whitespace-normal resize-none shadow appearance-none border-2 border-western rounded w-full py-6 px-3 text-black leading-tight focus:outline-none focus:shadow-outline mb-4"
+                    className="whitespace-normal resize-none shadow appearance-none border-2 border-western rounded w-full py-3 px-3 text-black leading-tight focus:outline-none focus:shadow-outline mb-4"
+                    maxLength={MAX_DESCRIPTION_LENGTH}
+                    rows={3}
                     id="description"
                     placeholder="Description"
                     value={description}

@@ -1,5 +1,5 @@
 import { db } from "@/lib/firebase";
-import { cosineSimilarity } from "@/lib/math";
+import { cosineSimilarity } from "@/lib/utils";
 import { collection, getDocs, query } from "firebase/firestore";
 import { NextResponse } from "next/server";
 import { cookies } from "next/headers";

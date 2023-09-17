@@ -41,9 +41,7 @@ export default function QuizQuestion({
       className="flex flex-col max-w-6xl items-center text-center mx-auto px-8 gap-y-6"
       id={"Q" + id.toString()}
     >
-      <h1 className="text-4xl md:text-5xl font-semibold">
-        {"Q" + id.toString()}
-      </h1>
+      <h1 className="text-4xl md:text-5xl font-bold">{"Q" + id.toString()}</h1>
       <h2 className="text-xl md:text-2xl font-semibold">{question}</h2>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
         {options.map((opt, index) => {

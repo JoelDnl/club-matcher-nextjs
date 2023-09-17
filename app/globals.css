@@ -1,11 +1,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap");
+@import url("https://rsms.me/inter/inter.css");
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 .toastBody {
-  font-family: "Roboto", sans-serif;
+  font-family: "Inter var", sans-serif;
 }
 
 @media only screen and (min-width: 600px) {
@@ -16,7 +17,7 @@
 
 @layer base {
   html {
-    font-family: "Roboto", sans-serif;
+    font-family: "Inter var", sans-serif;
     -webkit-tap-highlight-color: transparent;
   }
 }

@@ -37,7 +37,7 @@ export default function Home() {
           <a
             href="https://westernu.campuslabs.ca/engage/organizations"
             target="_blank"
-            className="underline text-western inline-flex w-fit"
+            className="underline underline-offset-4 text-western inline-flex w-fit"
           >
             See All Clubs
           </a>

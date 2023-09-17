@@ -32,7 +32,7 @@ export default function ResultsTabGroup({
                 key={`tab-${index + 1}`}
                 className={({ selected }) => {
                   return `rounded-md py-2.5 text-lg font-semibold leading-5 text-western bg-white hover:bg-gray hover:bg-opacity-30 focus:outline-none focus:ring-none border-0 w-2/5 sm:w-1/4 shadow transition-colors ${
-                    selected ? "border-b-4 border-western" : ""
+                    selected ? "border-b-4  border-western" : ""
                   }`;
                 }}
               >

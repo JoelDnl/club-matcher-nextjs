@@ -17,10 +17,14 @@ export default function Header() {
   };
 
   return (
-    <div className="min-w-screen h-[100vh] sm:h-[80vh] text-center items-center flex flex-col md:flex-row md:justify-center px-4 md:px-16 mt-0 gap-x-8">
-      <Image src={logo} alt="Western USC" className="m-8 w-40 lg:w-72 " />
-      <div className="flex flex-col space-y-4 items-center md:items-start sm:text-left">
-        <h1 className="text-2xl lg:text-3xl font-semibold">
+    <div className="min-w-screen h-[100vh] sm:h-[80vh] text-center items-center flex flex-col md:flex-row md:justify-center px-4 md:px-16 mt-0 gap-x-10">
+      <Image
+        src={logo}
+        alt="Western USC"
+        className="m-4 mb-8 sm:mb-4 w-40 md:w-60 lg:w-72 "
+      />
+      <div className="flex flex-col gap-y-4 items-center md:items-start sm:text-left">
+        <h1 className="text-3xl lg:text-4xl font-bold">
           Swipe Right On A New Match This Year.
         </h1>
         <h4 className="text-base font-normal">

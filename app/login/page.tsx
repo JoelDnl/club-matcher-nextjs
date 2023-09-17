@@ -54,7 +54,7 @@ export default function Login() {
     <div className="flex flex-col min-w-screen text-center items-center md:justify-center px-8 mt-24 sm:mt-28 gap-x-8 ">
       <Image src={logo} alt="Western USC" className="m-4 w-28 sm:w-32" />
       <div className="space-y-2 items-center text-center md:items-start">
-        <h1 className="text-2xl lg:text-3xl font-semibold">Club Login</h1>
+        <h1 className="text-2xl lg:text-3xl font-bold">Club Login</h1>
         <h4 className="text-base font-normal">
           Update your club&apos;s quiz profile and links.
         </h4>

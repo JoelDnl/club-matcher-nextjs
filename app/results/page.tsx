@@ -47,7 +47,7 @@ export default function Results() {
   }, []);
 
   return (
-    <main className="justify-center text-center pt-6 sm:mt-8">
+    <main className="justify-center text-center mt-6">
       <div>
         <h1 className="justify-center items-center text-5xl font-bold text-black hidden sm:inline-flex">
           Your results are in
