@@ -60,6 +60,13 @@ export async function getClub(data: any) {
   return clubData;
 }
 
+export async function getClubByEmail(data: any) {
+  const docRef = query(collection(db, "clubs"), where("email", "==", data));
+  const docSnap = await getDocs(docRef);
+
+  return { data: docSnap.docs[0].data() };
+}
+
 export async function createClub({ data }: { data: Club }) {
   try {
     await addDoc(collection(db, "clubs"), data);
