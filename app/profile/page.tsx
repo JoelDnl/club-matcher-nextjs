@@ -4,6 +4,7 @@ import Card from "@/components/ui/Card";
 import { useAuth } from "@/lib/auth";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
+import Typewriter from "typewriter-effect";
 
 export default function Profile() {
   const auth = useAuth();
@@ -18,9 +19,21 @@ export default function Profile() {
 
   return (
     <main className="px-8 w-11/12 sm:max-w-6xl mx-auto my-4">
-      <div className="">
-        <h2 className="text-2xl lg:text-3xl font-semibold">Your Profile</h2>
-        <div className="grid grid-cols-5 gap-4 my-4">
+      <div className="flex text-center h-[50vh] lg:h-[60vh] justify-center items-center">
+        <h2 className="text-3xl md:text-4xl font-bold inline-flex">
+          We&apos;re working on your profile dashboard.
+          <span className="hidden lg:block">
+            <Typewriter
+              options={{
+                strings: [".."],
+                autoStart: true,
+                loop: true,
+                cursor: "",
+              }}
+            />
+          </span>
+        </h2>
+        {/* <div className="grid grid-cols-5 gap-4 my-4">
           <Card className="col-span-2 rounded">
             <h3 className="text-xl lg:text-2xl font-semibold">Club Name</h3>
           </Card>
@@ -29,7 +42,7 @@ export default function Profile() {
               Club Description
             </h3>
           </Card>
-        </div>
+        </div> */}
       </div>
     </main>
   );
