@@ -96,7 +96,7 @@ export default function Login() {
 
       if (description.length > MAX_DESCRIPTION_LENGTH) {
         errorToast(
-          "Please provide a description with a maximum of 200 characters."
+          `Please provide a description with a maximum of ${MAX_DESCRIPTION_LENGTH} characters.`
         );
         return;
       }
@@ -166,7 +166,7 @@ export default function Login() {
           {registerStage == 0 ? (
             <div className="">
               <input
-                className="shadow appearance-none border-2 border-western rounded w-full py-2 px-3 text-black leading-tight focus:outline-none focus:shadow-outline mb-4"
+                className="shadow appearance-none border-2 border-western border-opacity-80 rounded w-full py-2 px-3 text-black leading-tight focus:outline-none focus:shadow-outline mb-4"
                 id="email"
                 type="text"
                 placeholder="Email"
@@ -174,7 +174,7 @@ export default function Login() {
                 onChange={(e) => setEmail(e.target.value)}
               />
               <input
-                className="shadow appearance-none border-2 border-western rounded w-full py-2 px-3 text-black leading-tight focus:outline-none focus:shadow-outline mb-4"
+                className="shadow appearance-none border-2 border-western border-opacity-80 rounded w-full py-2 px-3 text-black leading-tight focus:outline-none focus:shadow-outline mb-4"
                 id="password"
                 type="password"
                 placeholder="Password"
@@ -182,7 +182,7 @@ export default function Login() {
                 onChange={(e) => setPassword(e.target.value)}
               />
               <input
-                className="shadow appearance-none border-2 border-western rounded w-full py-2 px-3 text-black leading-tight focus:outline-none focus:shadow-outline mb-4"
+                className="shadow appearance-none border-2 border-western border-opacity-80 rounded w-full py-2 px-3 text-black leading-tight focus:outline-none focus:shadow-outline mb-4"
                 id="passwordConfirm"
                 type="password"
                 placeholder="Confirm Password"
@@ -190,7 +190,7 @@ export default function Login() {
                 onChange={(e) => setPasswordConfirm(e.target.value)}
               />
               <input
-                className="shadow appearance-none border-2 border-western rounded w-full py-2 px-3 text-black leading-tight focus:outline-none focus:shadow-outline mb-4"
+                className="shadow appearance-none border-2 border-western border-opacity-80 rounded w-full py-2 px-3 text-black leading-tight focus:outline-none focus:shadow-outline mb-4"
                 id="registerCode"
                 type="text"
                 placeholder="Registration Code"
@@ -204,7 +204,7 @@ export default function Login() {
                 <div className="">
                   <div className="grid grid-cols-3 gap-2">
                     <input
-                      className="col-span-2 shadow appearance-none border-2 border-western rounded w-full py-2 px-3 text-black leading-tight focus:outline-none focus:shadow-outline mb-4"
+                      className="col-span-2 shadow appearance-none border-2 border-western border-opacity-80 rounded w-full py-2 px-3 text-black leading-tight focus:outline-none focus:shadow-outline mb-4"
                       id="name"
                       type="text"
                       placeholder="Club Name"
@@ -220,7 +220,7 @@ export default function Login() {
                   </div>
 
                   <textarea
-                    className="whitespace-normal resize-none shadow appearance-none border-2 border-western rounded w-full py-3 px-3 text-black leading-tight focus:outline-none focus:shadow-outline mb-4"
+                    className="whitespace-normal resize-none shadow appearance-none border-2 border-western border-opacity-80 rounded w-full py-3 px-3 text-black leading-tight focus:outline-none focus:shadow-outline mb-4"
                     maxLength={MAX_DESCRIPTION_LENGTH}
                     rows={3}
                     id="description"
@@ -229,7 +229,7 @@ export default function Login() {
                     onChange={(e) => setDescription(e.target.value)}
                   />
                   <input
-                    className="shadow appearance-none border-2 border-western rounded w-full py-2 px-3 text-black leading-tight focus:outline-none focus:shadow-outline mb-4"
+                    className="shadow appearance-none border-2 border-western border-opacity-80 rounded w-full py-2 px-3 text-black leading-tight focus:outline-none focus:shadow-outline mb-4"
                     id="storefront"
                     type="text"
                     placeholder="Storefront URL"
@@ -237,7 +237,7 @@ export default function Login() {
                     onChange={(e) => setStorefront(e.target.value)}
                   />
                   <input
-                    className="shadow appearance-none border-2 border-western rounded w-full py-2 px-3 text-black leading-tight focus:outline-none focus:shadow-outline mb-4"
+                    className="shadow appearance-none border-2 border-western border-opacity-80 rounded w-full py-2 px-3 text-black leading-tight focus:outline-none focus:shadow-outline mb-4"
                     id="westerlink"
                     type="text"
                     placeholder="WesternLink URL"
