@@ -28,3 +28,8 @@ export function isValidHttpUrl(str: string) {
   );
   return pattern.test(str);
 }
+
+export function getDomainURL(str: string) {
+  console.log(new URL(str).hostname);
+  return new URL(str).hostname;
+}

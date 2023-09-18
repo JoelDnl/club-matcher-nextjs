@@ -2,6 +2,7 @@
 
 import ResultsTabGroup from "@/components/ResultsTabGroup";
 import { NULL_CLUB_WITH_SCORE } from "@/lib/club";
+import { getDomainURL } from "@/lib/utils";
 import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import Typewriter from "typewriter-effect";
@@ -13,11 +14,11 @@ export default function Results() {
   const { push } = useRouter();
 
   async function fetchSimilarClubs() {
+    const domainURL = getDomainURL(window.location.href);
+
     const res = await fetch(
       `${
-        window.location.href.includes("vercel")
-          ? process.env.NEXT_PUBLIC_API_URL_VERCEL
-          : process.env.NEXT_PUBLIC_API_URL
+        domainURL == "localhost" ? "http://localhost:3000" : domainURL
       }/api/match`,
       {
         method: "GET",

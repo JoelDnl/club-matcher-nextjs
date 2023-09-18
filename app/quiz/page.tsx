@@ -8,6 +8,7 @@ import { useRouter } from "next/navigation";
 import { errorToast } from "@/components/ui/Toast";
 import { SyntheticEvent, useState } from "react";
 import Spinner from "@/components/ui/Spinner";
+import { getDomainURL } from "@/lib/utils";
 
 export default function Quiz() {
   const { quizData, isFilled } = useQuizContext();
@@ -21,12 +22,11 @@ export default function Quiz() {
     if (isFilled()) {
       setMatching(true);
       const data = quizData.splice(1);
+      const domainURL = getDomainURL(window.location.href);
 
       const res = await fetch(
         `${
-          window.location.href.includes("vercel")
-            ? process.env.NEXT_PUBLIC_API_URL_VERCEL
-            : process.env.NEXT_PUBLIC_API_URL
+          domainURL == "localhost" ? "http://localhost:3000" : domainURL
         }/api/match`,
         {
           method: "POST",
