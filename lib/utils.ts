@@ -30,6 +30,5 @@ export function isValidHttpUrl(str: string) {
 }
 
 export function getDomainURL(str: string) {
-  console.log(new URL(str).hostname);
   return new URL(str).hostname;
 }

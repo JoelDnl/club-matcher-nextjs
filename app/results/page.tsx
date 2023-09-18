@@ -36,7 +36,6 @@ export default function Results() {
         : true
     );
     setSimilarClubs(result.data);
-    console.log(result.data);
 
     return result.data;
   }
