@@ -21,7 +21,7 @@ export default function Home() {
     <main>
       <Navbar />
       <Header />
-      <div className="grid grid-cols-1 md:grid-cols-2 max-w-6xl mx-auto justify-center gap-8 px-6 mt-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 max-w-6xl mx-auto justify-center gap-8 px-6 mt-8 sm:mt-4">
         <Card className="">
           <h2 className="text-xl md:text-2xl font-semibold">
             Why Join a Club?

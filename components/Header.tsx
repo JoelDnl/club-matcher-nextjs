@@ -17,7 +17,7 @@ export default function Header() {
   }
 
   return (
-    <div className="min-w-screen h-[100vh] sm:h-[80vh] text-center items-center flex flex-col md:flex-row md:justify-center px-4 md:px-16 mt-0 gap-x-10">
+    <div className="min-w-screen h-[80vh] text-center items-center flex flex-col md:flex-row justify-center px-4 md:px-16 mt-0 gap-x-10">
       <Image
         src={logo}
         alt="Western USC"
