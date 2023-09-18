@@ -49,7 +49,7 @@ export default function ResultsTabPanel({
             </div>
             <ProgressBar percent={Math.trunc(matchPercent)} />
           </div>
-          <p className="break-all sm:w-2/3 mx-auto text-center text-black text-opacity-90 text-lg sm:text-xl font-normal tracking-wide mt-4 sm:pt-2">
+          <p className="break-words sm:w-2/3 mx-auto text-center text-black text-opacity-90 text-lg sm:text-xl font-normal tracking-wide mt-4 sm:pt-2">
             {loading ? "Loading description..." : clubData.description}
           </p>
         </div>
