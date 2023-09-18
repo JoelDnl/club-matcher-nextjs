@@ -13,12 +13,19 @@ export default function Results() {
   const { push } = useRouter();
 
   async function fetchSimilarClubs() {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/match`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    const res = await fetch(
+      `${
+        window.location.href.includes("vercel")
+          ? process.env.NEXT_PUBLIC_API_URL_VERCEL
+          : process.env.NEXT_PUBLIC_API_URL
+      }/api/match`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
     const result = await res.json();
 
     setFilled(

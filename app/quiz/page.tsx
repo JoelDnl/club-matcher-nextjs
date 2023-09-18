@@ -22,13 +22,20 @@ export default function Quiz() {
       setMatching(true);
       const data = quizData.splice(1);
 
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/match`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      });
+      const res = await fetch(
+        `${
+          window.location.href.includes("vercel")
+            ? process.env.NEXT_PUBLIC_API_URL_VERCEL
+            : process.env.NEXT_PUBLIC_API_URL
+        }/api/match`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        }
+      );
       const result = await res.json();
 
       push("/results");
