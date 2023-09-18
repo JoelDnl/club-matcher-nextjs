@@ -22,7 +22,7 @@ export async function POST(request: Request) {
 
   clubs.forEach((club, index) => {
     const quizClub = club["quiz"];
-    const matchScore = cosineSimilarity(data, quizClub);
+    const matchScore = cosineSimilarity(quizClub, data);
 
     similarities.push({ email: club["email"], matchScore: matchScore });
   });
