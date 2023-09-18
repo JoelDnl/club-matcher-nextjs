@@ -23,10 +23,11 @@ export default function Quiz() {
       setMatching(true);
       const data = quizData.splice(1);
       const domainURL = getDomainURL(window.location.href);
+      const baseURL = `https://${domainURL}`;
 
       const res = await fetch(
         `${
-          domainURL == "localhost" ? "http://localhost:3000" : domainURL
+          domainURL == "localhost" ? "http://localhost:3000" : baseURL
         }/api/match`,
         {
           method: "POST",
