@@ -28,8 +28,8 @@ export default function Header() {
           Swipe Right On A New Match This Year.
         </h1>
         <h4 className="text-base font-normal">
-          With nearly 200 clubs to choose from, you are sure to find your
-          perfect match!
+          With over 200 clubs to choose from, you are sure to find your perfect
+          match!
         </h4>
         <h4 className="text-base font-semibold pb-2">
           Take our quiz to find the right fit for you!
