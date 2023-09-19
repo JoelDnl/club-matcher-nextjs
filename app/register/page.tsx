@@ -20,7 +20,7 @@ import { FirebaseError } from "firebase/app";
 import { isValidHttpUrl } from "@/lib/utils";
 
 export default function Login() {
-  const router = useRouter();
+  const { push } = useRouter();
   const auth = useAuth();
   const { quizData, isFilled } = useQuizContext();
 
@@ -39,11 +39,11 @@ export default function Login() {
   const [tag, setTag] = useState("");
 
   useEffect(() => {
-    if (auth.user.uid) {
-      router.push("/profile");
+    if (!auth.loading && auth.user.uid) {
+      push("/profile");
       return;
     }
-  }, []);
+  }, [auth.loading]);
 
   async function handleRegister(e: SyntheticEvent) {
     e.preventDefault();
@@ -136,7 +136,7 @@ export default function Login() {
 
           return createClub({ data: registerData }).then(() => {
             setRegisterStage(2);
-            router.push("/profile");
+            push("/profile");
             return;
           });
         });

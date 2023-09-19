@@ -12,7 +12,7 @@ import Spinner from "@/components/ui/Spinner";
 import { errorToast } from "@/components/ui/Toast";
 
 export default function Login() {
-  const router = useRouter();
+  const { push } = useRouter();
   const auth = useAuth();
 
   const [loginLoading, setLoginLoading] = useState(false);
@@ -20,8 +20,11 @@ export default function Login() {
   const [password, setPassword] = useState("");
 
   useEffect(() => {
-    if (auth.user.uid) router.push("/profile");
-  }, []);
+    if (!auth.loading && auth.user.uid) {
+      push("/profile");
+      return;
+    }
+  }, [auth.loading]);
 
   async function handleLogin(e: SyntheticEvent) {
     e.preventDefault();
@@ -30,7 +33,7 @@ export default function Login() {
       await auth.signIn(email, password).then(() => {
         toast.dismiss();
         setLoginLoading(true);
-        router.push("/profile");
+        push("/profile");
       });
     } catch (error) {
       toast.dismiss();
