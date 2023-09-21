@@ -28,7 +28,8 @@ export default function ResultsTabPanel({
 }) {
   const aClassName =
     "col-span-3 sm:col-span-1 text-black text-opacity-75 hover:text-western transition-colors font-semibold text-lg inline-flex items-center justify-center tracking-wide";
-  const matchPercent = clubData.matchScore * 100;
+  const matchPercent =
+    clubData.matchScore >= 1 ? 100.0 : clubData.matchScore * 100;
 
   return (
     <Tab.Panel className={`rounded bg-white pt-8 sm:pt-8 px-4 text-center`}>
