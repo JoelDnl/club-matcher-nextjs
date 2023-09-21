@@ -22,7 +22,7 @@ export default function RootLayout({
         <AuthProvider>
           {children}
           <ToastContainer bodyClassName="toastBody" />
-          <Analytics />
+          <Analytics mode={"production"} />
         </AuthProvider>
       </body>
     </html>
