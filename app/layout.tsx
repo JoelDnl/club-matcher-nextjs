@@ -22,8 +22,8 @@ export default function RootLayout({
         <AuthProvider>
           {children}
           <ToastContainer bodyClassName="toastBody" />
-          <Analytics mode={"production"} />
         </AuthProvider>
+        <Analytics mode={"production"} />
       </body>
     </html>
   );
