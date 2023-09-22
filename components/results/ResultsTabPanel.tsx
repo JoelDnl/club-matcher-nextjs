@@ -11,9 +11,9 @@ import { MdChecklist, MdOutlineQuiz } from "react-icons/md";
 import { FiArrowUpRight } from "react-icons/fi";
 import { IoPricetags } from "react-icons/io5";
 import { ReactElement } from "react";
-import { TabTransition } from "./ui/Transitions";
+import { TabTransition } from "@/components/ui/Transitions";
 import { Tab } from "@headlessui/react";
-import ProgressBar from "./ui/ProgressBar";
+import ProgressBar from "@/components/ui/ProgressBar";
 
 export default function ResultsTabPanel({
   rank,
