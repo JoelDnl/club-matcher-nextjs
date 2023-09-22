@@ -1,6 +1,6 @@
 "use client";
 
-import ResultsTabGroup from "@/components/ResultsTabGroup";
+import ResultsTabGroup from "@/components/results/ResultsTabGroup";
 import { NULL_CLUB_WITH_SCORE } from "@/lib/club";
 import { getDomainURL } from "@/lib/utils";
 import { useRouter } from "next/navigation";
