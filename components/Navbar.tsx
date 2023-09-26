@@ -5,9 +5,17 @@ import Image from "next/image";
 
 import logo from "@/public/images/usc_logo.png";
 import { useAuth } from "@/lib/auth";
+import { useRouter } from "next/navigation";
 
 export default function Navbar() {
   const auth = useAuth();
+  const { push } = useRouter();
+
+  function handleSignOut() {
+    auth.signOut();
+    push("/login");
+    return;
+  }
 
   return (
     <Disclosure as="nav" className="bg-white">
@@ -35,7 +43,7 @@ export default function Navbar() {
                     Profile
                   </a>
                   <div
-                    onClick={() => auth.signOut()}
+                    onClick={handleSignOut}
                     className="bg-white border-2 border-black text-black hover:bg-black hover:text-white rounded px-2 py-1 text-base font-semibold transition-colors cursor-pointer fade-in"
                   >
                     Logout
