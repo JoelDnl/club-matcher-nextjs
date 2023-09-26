@@ -16,14 +16,15 @@ export const QuizData = [
     question: "What overall category of club would you be interested in?",
     options: [
       "Academics",
-      "Business/Finance",
-      "Community Volunteering / Philanthropy",
+      "Business / Finance",
+      "Philanthropy",
       "Cultural",
-      "Health and Wellness",
-      "Hobbies / Special Interests",
+      "Health / Wellness",
+      "Hobbies / Interests",
       "Music / Performing Arts",
       "Politics / Social Justice",
       "Sports",
+      "Sustainability",
     ],
   },
   {
@@ -69,7 +70,7 @@ export const QuizData = [
     question: "What about a dress code?",
     options: [
       "I'd like to stick to my wardrobe.",
-      "I'm malleable. I'll dress up if I have to.",
+      "I'm open-minded. I'll dress up if I have to.",
       "Any opportunity to get dressed up and I'll take it!",
     ],
   },
