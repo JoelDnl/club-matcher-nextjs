@@ -1,17 +1,9 @@
 import { ClubWithScore } from "@/lib/club";
-import { RiMailSendLine } from "react-icons/ri";
-import { SiMaildotru } from "react-icons/si";
-import { TbMailPlus } from "react-icons/tb";
-import { BsBoxArrowUpRight } from "react-icons/bs";
-import { FaGlobe, FaHome, FaStore } from "react-icons/fa";
-import { FaArrowUpRightFromSquare, FaAt } from "react-icons/fa6";
-import { BiSolidArrowFromLeft } from "react-icons/bi";
+import { FaGlobe, FaStore } from "react-icons/fa";
+import { FaAt } from "react-icons/fa6";
 import { GoTrophy } from "react-icons/go";
-import { MdChecklist, MdOutlineQuiz } from "react-icons/md";
-import { FiArrowUpRight } from "react-icons/fi";
 import { IoPricetags } from "react-icons/io5";
-import { ReactElement } from "react";
-import { TabTransition } from "@/components/ui/Transitions";
+import { TabTransition } from "@/components/ui/Transition";
 import { Tab } from "@headlessui/react";
 import ProgressBar from "@/components/ui/ProgressBar";
 
