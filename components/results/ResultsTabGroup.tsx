@@ -33,8 +33,8 @@ export default function ResultsTabGroup({
                   }`;
                 }}
               >
-                <div className="inline-flex justify-center items-center mr-1">
-                  <FaStar className="hidden sm:inline-flex mr-1.5 text-xl" />{" "}
+                <div className="inline-flex justify-center items-center py-1">
+                  <FaStar className="hidden sm:inline-flex mr-1.5 text-2xl" />{" "}
                   <span className="hidden sm:inline-flex">Rank&nbsp;</span>
                   <h4 className="text-xl sm:text-lg">{index + 1}</h4>
                 </div>
