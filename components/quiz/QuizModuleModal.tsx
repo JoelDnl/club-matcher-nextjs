@@ -1,17 +1,19 @@
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, useState } from "react";
-import QuizRegisterRadio from "./QuizRegisterRadio";
+import QuizModuleRadio from "@/components/quiz/QuizModuleRadio";
 import { useQuizContext } from "@/context/QuizContext";
 import { FaCheck } from "react-icons/fa";
 
-export default function QuizRegisterModal({
+export default function QuizModuleModal({
   id,
   question,
   options,
+  type,
 }: {
   id: number;
   question: string;
   options: string[];
+  type: "register" | "profile";
 }) {
   let { quizData } = useQuizContext();
   let [open, setOpen] = useState(false);
@@ -24,13 +26,15 @@ export default function QuizRegisterModal({
           onClick={() => setOpen(true)}
           className={`w-full bg-gray ${
             quizData[id] > -1 ? "text-western" : "text-black"
-          } sm:text-black border-2 border-gray_dark border-opacity-5 hover:border-western hover:text-western rounded px-4 py-2 text-normal font-medium focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75`}
+          } sm:text-black border-2 border-gray_dark border-opacity-5 hover:border-western hover:text-western rounded px-4 ${
+            type === "register" ? "py-2 text-normal" : "py-8 text-lg"
+          } font-medium focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75`}
         >
           Question {id}{" "}
           <FaCheck
             className={`hidden text-western ml-1 text-[20px] ${
               quizData[id] > -1 ? "sm:inline-flex" : "sm:hidden"
-            }`}
+            } ${type === "profile" ? "hidden sm:hidden" : ""}`}
           />
         </button>
       </div>
@@ -72,7 +76,7 @@ export default function QuizRegisterModal({
                     {question}
                   </Dialog.Title>
                   <div className="mt-2">
-                    <QuizRegisterRadio id={id} options={options} />
+                    <QuizModuleRadio id={id} options={options} type={type} />
                   </div>
 
                   <div className="mt-4 text-center">

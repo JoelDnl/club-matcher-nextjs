@@ -1,21 +1,38 @@
 import { useEffect, useState } from "react";
 import { RadioGroup } from "@headlessui/react";
 import { useQuizContext } from "@/context/QuizContext";
+import { useProfileContext } from "@/context/ProfileContext";
 
-export default function QuizRegisterRadio({
+export default function QuizModuleRadio({
   id,
   options,
+  type,
 }: {
   id: number;
   options: string[];
+  type: "register" | "profile";
 }) {
+  const { profile, setProfile } = useProfileContext();
   const { quizData, setQuizData } = useQuizContext();
-  const [selected, setSelected] = useState(options[quizData[id]]);
+
+  const [selected, setSelected] = useState(
+    type === "register" ? options[quizData[id]] : options[profile.quiz[id - 1]]
+  );
 
   useEffect(() => {
-    let newData = quizData;
-    newData[id] = options.indexOf(selected);
-    setQuizData(newData);
+    let newData = type === "register" ? quizData : profile.quiz;
+    newData[type === "register" ? id : id - 1] = options.indexOf(selected);
+    if (type === "profile") {
+      setProfile({
+        name: profile.name,
+        description: profile.description,
+        email: profile.email,
+        tag: profile.tag,
+        storefront: profile.storefront,
+        westernlink: profile.westernlink,
+        quiz: newData,
+      });
+    } else setQuizData(newData);
   }, [selected]);
 
   return (
