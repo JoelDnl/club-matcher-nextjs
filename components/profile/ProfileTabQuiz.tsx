@@ -36,8 +36,6 @@ export default function ProfileTabQuiz({ tabIndex }: { tabIndex: number }) {
     }
   }
 
-  function handleClear() {}
-
   return (
     <Tab.Panel className={`rounded bg-white`}>
       <TabTransition tabIndex={tabIndex} index={1}>
@@ -90,13 +88,6 @@ export default function ProfileTabQuiz({ tabIndex }: { tabIndex: number }) {
                 }) */}
               </div>
               <div className="px-0 sm:px-8 mt-8 mb-6 sm:mb-0 flex items-center justify-center sm:justify-end gap-x-6 shadow-none border-none">
-                <button
-                  type="button"
-                  onClick={handleClear}
-                  className="font-semibold leading-6 text-black"
-                >
-                  Cancel
-                </button>
                 <button
                   type="submit"
                   className="rounded-md bg-western px-3 py-2 font-semibold text-white shadow-sm hover:bg-western focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-western"
