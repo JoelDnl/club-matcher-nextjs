@@ -4,7 +4,7 @@ import ResultsTabGroup from "@/components/results/ResultsTabGroup";
 import { NULL_CLUB_WITH_SCORE } from "@/lib/club";
 import { getDomainURL } from "@/lib/utils";
 import { useRouter } from "next/navigation";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import Typewriter from "typewriter-effect";
 
 export default function Results() {

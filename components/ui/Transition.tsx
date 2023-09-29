@@ -1,5 +1,5 @@
 import { Transition } from "@headlessui/react";
-import { ReactElement, useEffect, useState } from "react";
+import { ReactElement } from "react";
 
 export const TabTransition = ({
   children,

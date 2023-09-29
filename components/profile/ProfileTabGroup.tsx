@@ -7,13 +7,7 @@ import ProfileTabSettings from "@/components/profile/ProfileTabSettings";
 import ProfileTabQuiz from "./ProfileTabQuiz";
 import ProfileTabPreview from "./ProfileTabPreview";
 
-export default function ProfileTabGroup({
-  loading,
-  data,
-}: {
-  loading: boolean;
-  data: Club;
-}) {
+export default function ProfileTabGroup({}) {
   const [tabIndex, setTabIndex] = useState(0);
   const tabs = [
     {
@@ -57,7 +51,7 @@ export default function ProfileTabGroup({
         <Tab.Panels className="mt-8 sm:mt-6">
           <ProfileTabSettings tabIndex={tabIndex} />
           <ProfileTabQuiz tabIndex={tabIndex} />
-          <ProfileTabPreview tabIndex={tabIndex} data={data} />
+          <ProfileTabPreview tabIndex={tabIndex} />
         </Tab.Panels>
       </Tab.Group>
     </div>

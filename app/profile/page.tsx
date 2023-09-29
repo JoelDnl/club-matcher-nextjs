@@ -3,7 +3,7 @@
 import ProfileTabGroup from "@/components/profile/ProfileTabGroup";
 import { useProfileContext } from "@/context/ProfileContext";
 import { useAuth } from "@/lib/auth";
-import { Club, NULL_CLUB } from "@/lib/club";
+import { Club } from "@/lib/club";
 import { getDomainURL } from "@/lib/utils";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -12,8 +12,6 @@ export default function Profile() {
   const auth = useAuth();
   const { profile, setProfile } = useProfileContext();
   const { push } = useRouter();
-
-  const [loading, setLoading] = useState(true);
 
   async function fetchClubData() {
     const domainURL = getDomainURL(window.location.href);
@@ -50,8 +48,6 @@ export default function Profile() {
   useEffect(() => {
     (async () => {
       await fetchClubData().then(() => {
-        setLoading(false);
-
         if (!auth.loading && !auth.user.uid) {
           push("/login");
           return;
@@ -65,7 +61,7 @@ export default function Profile() {
   return (
     <main className="">
       <div className="flex lg:h-full justify-center items-center w-11/12 sm:max-w-6xl mx-auto">
-        <ProfileTabGroup loading={loading} data={profile} />
+        <ProfileTabGroup />
       </div>
     </main>
   );

@@ -3,7 +3,7 @@
 import { Club, MAX_DESCRIPTION_LENGTH, updateClub } from "@/lib/club";
 import { TabTransition } from "@/components/ui/Transition";
 import { Tab } from "@headlessui/react";
-import { SyntheticEvent, useEffect, useState } from "react";
+import { SyntheticEvent, useState } from "react";
 import { tags } from "@/lib/tags";
 import { errorToast, successToast } from "../ui/Toast";
 import { isValidHttpUrl } from "@/lib/utils";

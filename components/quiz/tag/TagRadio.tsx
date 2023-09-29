@@ -1,6 +1,5 @@
-import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import { Dispatch, SetStateAction } from "react";
 import { RadioGroup } from "@headlessui/react";
-import { useQuizContext } from "@/context/QuizContext";
 
 export default function TagRadio({
   tags,
@@ -11,8 +10,6 @@ export default function TagRadio({
   selected: string;
   setSelected: Dispatch<SetStateAction<string>>;
 }) {
-  const { quizData, setQuizData } = useQuizContext();
-
   return (
     <div className="w-full py-2">
       <div className="mx-auto w-full max-w-md">

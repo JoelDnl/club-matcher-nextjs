@@ -1,11 +1,8 @@
 import { Dialog, Transition } from "@headlessui/react";
 import { Dispatch, Fragment, SetStateAction, useState } from "react";
 import TagRadio from "./TagRadio";
-import { HiCursorClick } from "react-icons/hi";
 import { FaCheck } from "react-icons/fa";
-import { FaRegHandPointer } from "react-icons/fa";
 import { LuPointer } from "react-icons/lu";
-import { LiaHandPointer } from "react-icons/lia";
 
 export default function TagModal({
   buttonClass,

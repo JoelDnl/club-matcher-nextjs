@@ -1,4 +1,3 @@
-import { QuizData } from "@/data/QuizData";
 import { Listbox, Transition } from "@headlessui/react";
 import { Fragment, useState } from "react";
 import { HiChevronUpDown } from "react-icons/hi2";

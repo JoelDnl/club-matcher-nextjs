@@ -1,14 +1,7 @@
-import { Club } from "@/lib/club";
 import ResultsTabPanel from "../results/ResultsTabPanel";
 import { useProfileContext } from "@/context/ProfileContext";
 
-export default function ProfileTabPreview({
-  tabIndex,
-  data,
-}: {
-  tabIndex: number;
-  data: Club;
-}) {
+export default function ProfileTabPreview({ tabIndex }: { tabIndex: number }) {
   const { profile } = useProfileContext();
 
   return (
