@@ -10,7 +10,7 @@ import { SyntheticEvent, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Spinner from "@/components/ui/Spinner";
 import { FaLongArrowAltLeft, FaLongArrowAltRight } from "react-icons/fa";
-import QuizRegister from "@/components/quiz/QuizRegister";
+import QuizModule from "@/components/quiz/QuizModule";
 import { useQuizContext } from "@/context/QuizContext";
 import { Club, MAX_DESCRIPTION_LENGTH, createClub } from "@/lib/club";
 import TagModal from "@/components/quiz/tag/TagModal";
@@ -246,7 +246,7 @@ export default function Login() {
                   />
                 </div>
               ) : (
-                <QuizRegister />
+                <QuizModule type="register" />
               )}
             </>
           )}
