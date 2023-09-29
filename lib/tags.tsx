@@ -7,6 +7,6 @@ export const tags = [
   "Philanthropy",
   "Hobbies / Interests",
   "Business / Finance",
-  "Sustainability",
   "Sports",
+  "Sustainability",
 ];
