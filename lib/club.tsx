@@ -2,8 +2,10 @@ import {
   DocumentData,
   addDoc,
   collection,
+  doc,
   getDocs,
   query,
+  updateDoc,
   where,
 } from "firebase/firestore";
 import { db } from "./firebase";
@@ -19,7 +21,7 @@ export interface Club {
 }
 
 export interface ClubWithScore extends Club {
-  matchScore: 0;
+  matchScore: number;
 }
 
 export const NULL_CLUB: Club = {
@@ -70,6 +72,47 @@ export async function getClubByEmail(data: any) {
 export async function createClub({ data }: { data: Club }) {
   try {
     await addDoc(collection(db, "clubs"), data);
+  } catch (err) {
+    throw err;
+  }
+}
+
+export async function updateClub({ data }: { data: Club }) {
+  const docQuery = query(
+    collection(db, "clubs"),
+    where("email", "==", data.email)
+  );
+  const docSnap = await getDocs(docQuery);
+
+  try {
+    const docRef = doc(db, "clubs", docSnap.docs[0].id);
+    await updateDoc(docRef, {
+      name: data.name,
+      description: data.description,
+      tag: data.tag,
+      storefront: data.storefront,
+      westernlink: data.westernlink,
+    });
+  } catch (err) {
+    throw err;
+  }
+}
+
+export async function updateClubQuiz({
+  data,
+  email,
+}: {
+  data: number[];
+  email: string | null;
+}) {
+  const docQuery = query(collection(db, "clubs"), where("email", "==", email));
+  const docSnap = await getDocs(docQuery);
+
+  try {
+    const docRef = doc(db, "clubs", docSnap.docs[0].id);
+    await updateDoc(docRef, {
+      quiz: data,
+    });
   } catch (err) {
     throw err;
   }
