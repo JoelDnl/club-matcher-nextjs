@@ -3,6 +3,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { QuizContextProvider } from "@/context/QuizContext";
 import { Metadata } from "next";
+import { ProfileContextProvider } from "@/context/ProfileContext";
 
 export const metadata: Metadata = {
   title: "Profile | USC Club Matcher",
@@ -15,10 +16,12 @@ export default function NestedLayout({
   children: React.ReactNode;
 }) {
   return (
-    <QuizContextProvider>
-      <Navbar />
-      {children}
-      <Footer />
-    </QuizContextProvider>
+    <ProfileContextProvider>
+      <QuizContextProvider>
+        <Navbar />
+        {children}
+        <Footer />
+      </QuizContextProvider>
+    </ProfileContextProvider>
   );
 }

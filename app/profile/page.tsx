@@ -1,48 +1,71 @@
 "use client";
 
-import Card from "@/components/ui/Card";
+import ProfileTabGroup from "@/components/profile/ProfileTabGroup";
+import { useProfileContext } from "@/context/ProfileContext";
 import { useAuth } from "@/lib/auth";
+import { Club, NULL_CLUB } from "@/lib/club";
+import { getDomainURL } from "@/lib/utils";
 import { useRouter } from "next/navigation";
-import { useEffect } from "react";
-import Typewriter from "typewriter-effect";
+import { useEffect, useState } from "react";
 
 export default function Profile() {
   const auth = useAuth();
+  const { profile, setProfile } = useProfileContext();
   const { push } = useRouter();
 
+  const [loading, setLoading] = useState(true);
+
+  async function fetchClubData() {
+    const domainURL = getDomainURL(window.location.href);
+    const baseURL = `https://${domainURL}`;
+
+    const res = await fetch(
+      `${
+        domainURL == "localhost" ? "http://localhost:3000" : baseURL
+      }/api/club`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(auth.user.email),
+      }
+    );
+    const result = await res.json();
+
+    const formatClub: Club = {
+      email: result.data["email"],
+      name: result.data["name"],
+      description: result.data["description"],
+      tag: result.data["tag"],
+      storefront: result.data["storefront"],
+      westernlink: result.data["westernlink"],
+      quiz: result.data["quiz"],
+    };
+    setProfile(formatClub);
+
+    return result.data;
+  }
+
   useEffect(() => {
-    if (!auth.user.uid) {
-      push("/login");
-      return;
-    }
-  }, [auth.user.uid]);
+    (async () => {
+      await fetchClubData().then(() => {
+        setLoading(false);
+
+        if (!auth.loading && !auth.user.uid) {
+          push("/login");
+          return;
+        }
+      });
+    })();
+
+    return () => {};
+  }, [auth.loading]);
 
   return (
-    <main className="px-8 w-11/12 sm:max-w-6xl mx-auto my-4">
-      <div className="flex text-center h-[50vh] lg:h-[60vh] justify-center items-center">
-        <h2 className="text-3xl md:text-4xl font-bold inline-flex">
-          We&apos;re working on your profile dashboard.
-          <span className="hidden lg:block">
-            <Typewriter
-              options={{
-                strings: [".."],
-                autoStart: true,
-                loop: true,
-                cursor: "",
-              }}
-            />
-          </span>
-        </h2>
-        {/* <div className="grid grid-cols-5 gap-4 my-4">
-          <Card className="col-span-2 rounded">
-            <h3 className="text-xl lg:text-2xl font-semibold">Club Name</h3>
-          </Card>
-          <Card className="col-span-3 rounded">
-            <h3 className="text-xl lg:text-2xl font-semibold">
-              Club Description
-            </h3>
-          </Card>
-        </div> */}
+    <main className="">
+      <div className="flex lg:h-full justify-center items-center w-11/12 sm:max-w-6xl mx-auto">
+        <ProfileTabGroup loading={loading} data={profile} />
       </div>
     </main>
   );
