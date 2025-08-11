@@ -1,19 +1,47 @@
-export function cosineSimilarity(arrayA: number[], arrayB: number[]) {
-  let dotProduct = 0,
-    mA = 0,
-    mB = 0;
+// Weights for Q1..Q8 (sum ≈ 1). Tweak as you like.
+export const QUIZ_WEIGHTS: number[] = [0.25, 0.25, 0.10, 0.15, 0.03, 0.07, 0.05, 0.10];
 
-  for (let i = 0; i < arrayA.length; i++) {
-    dotProduct += (arrayA[i] + 1) * (arrayB[i] + 1);
-    mA += (arrayA[i] + 1) * (arrayB[i] + 1);
-    mB += (arrayB[i] + 1) * (arrayB[i] + 1);
+// Clamp helper
+const clamp01 = (x: number) => Math.max(0, Math.min(1, x));
+
+/** Plain cosine similarity. Returns 0..1 for non-negative inputs. */
+export function cosineSimilarity(a: unknown[], b: unknown[]) {
+  if (!Array.isArray(a) || !Array.isArray(b)) return 0;
+  const n = Math.min(a.length, b.length);
+  if (n === 0) return 0;
+
+  let dot = 0, na = 0, nb = 0;
+  for (let i = 0; i < n; i++) {
+    const x = Number(a[i]);
+    const y = Number(b[i]);
+    if (!Number.isFinite(x) || !Number.isFinite(y)) continue;
+    dot += x * y;
+    na += x * x;
+    nb += y * y;
   }
-
-  mA = Math.sqrt(mA);
-  mB = Math.sqrt(mB);
-
-  return dotProduct / (mA * mB);
+  const denom = Math.sqrt(na) * Math.sqrt(nb);
+  return clamp01(denom ? dot / denom : 0);
 }
+
+/** Weighted cosine similarity using weights per question. */
+export function cosineSimilarityWeighted(a: unknown[], b: unknown[], w: number[] = QUIZ_WEIGHTS) {
+  if (!Array.isArray(a) || !Array.isArray(b) || !Array.isArray(w)) return 0;
+  const n = Math.min(a.length, b.length, w.length);
+  if (n === 0) return 0;
+
+  let dot = 0, na = 0, nb = 0;
+  for (let i = 0; i < n; i++) {
+    const x = Number(a[i]) * Number(w[i]);
+    const y = Number(b[i]) * Number(w[i]);
+    if (!Number.isFinite(x) || !Number.isFinite(y)) continue;
+    dot += x * y;
+    na += x * x;
+    nb += y * y;
+  }
+  const denom = Math.sqrt(na) * Math.sqrt(nb);
+  return clamp01(denom ? dot / denom : 0);
+}
+
 
 // Borrowed from freeCodeCamp
 export function isValidHttpUrl(str: string) {
