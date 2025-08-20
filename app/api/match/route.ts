@@ -1,5 +1,5 @@
 import { db } from "@/lib/firebase";
-import { cosineSimilarityWeighted, QUIZ_WEIGHTS } from "@/lib/utils";
+import { manhattanSimilarityWeighted, QUIZ_WEIGHTS } from "@/lib/utils";
 import { collection, getDocs, query } from "firebase/firestore";
 import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
@@ -12,7 +12,7 @@ export async function POST(request: Request) {
 
   console.log('DEBUG answers:', data, 'len=', Array.isArray(data) ? data.length : 'NA');
 
-
+  
   let clubs: any[] = [];
 
   let q = query(collection(db, "clubs"));
@@ -48,7 +48,7 @@ export async function POST(request: Request) {
   const source = pool.length ? pool : validClubs; // use filtered set if any remain
   source.forEach((club) => {
     const quizClub = (club.quiz ?? []).map(Number);
-    const score = cosineSimilarityWeighted(data.map(Number), quizClub, QUIZ_WEIGHTS);
+    const score = manhattanSimilarityWeighted(data.map(Number), quizClub, QUIZ_WEIGHTS);
     similarities.push({
       email: String(club.email ?? ""),
       matchScore: Number.isFinite(score) ? score : 0, // keep in 0..1
