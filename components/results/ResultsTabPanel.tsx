@@ -12,11 +12,13 @@ export default function ResultsTabPanel({
   clubData,
   tabIndex,
   loading,
+  onTagClick,
 }: {
   rank: number;
   clubData: ClubWithScore;
   tabIndex: number;
   loading: boolean;
+  onTagClick?: (tag?: string) => void;
 }) {
   const aClassName =
     "col-span-3 sm:col-span-1 text-black text-opacity-75 hover:text-western transition-colors font-semibold text-lg inline-flex items-center justify-center tracking-wide";
@@ -33,15 +35,17 @@ export default function ResultsTabPanel({
           <h2 className="text-3xl sm:text-4xl font-semibold tracking-wide text-black mt-6 mb-4 sm:my-6">
             {loading ? "Loading club name..." : clubData.name}
           </h2>
-          <div className="flex flex-col sm:flex-row flex-wrap w-11/12 sm:max-w-2xl mx-auto justify-center items-center my-4 text-black text-opacity-90 text-lg sm:text-xl font-medium gap-2 sm:gap-4">
-            <div
-              className={`flex items-center justify-center bg-white text-western text-center border-2 border-western rounded px-3 py-2 leading-tight focus:outline-none w-2/3 lg:w-[45%]`}
-            >
-              <IoPricetags className="hidden sm:flex text-2xl mr-2" />
-              <span>{loading ? "Loading tag" : clubData.tag}</span>
-            </div>
-            <ProgressBar percent={Math.trunc(matchPercent)} />
-          </div>
+          <span className="...">{clubData.tag}</span>
+          <button
+            type="button"
+            onClick={() => onTagClick?.(String(clubData.tag ?? ""))}
+            className="flex items-center justify-center bg-white text-western text-center border-2 border-western rounded px-3 py-2 leading-tight focus:outline-none hover:bg-purple-50 w-2/3 lg:w-[45%]"
+            title="Show more clubs in this category"
+          >
+            <IoPricetags className="hidden sm:flex text-2xl mr-2" />
+            <span>{loading ? "Loading tag" : clubData.tag}</span>
+          </button>
+          <ProgressBar percent={Math.trunc(matchPercent)} />
           <p className="break-words sm:w-2/3 mx-auto text-center text-black text-opacity-90 text-lg sm:text-xl font-normal tracking-wide mt-4 sm:pt-2">
             {loading ? "Loading description..." : clubData.description}
           </p>

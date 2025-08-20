@@ -51,7 +51,7 @@ export async function POST(request: Request) {
     const score = cosineSimilarityWeighted(data.map(Number), quizClub, QUIZ_WEIGHTS);
     similarities.push({
       email: String(club.email ?? ""),
-      matchScore: Number.isFinite(score) ? score : 0, // keep in 0..1
+      matchScore: Number.isFinite(score) ? score : 0,
     });
   });
 

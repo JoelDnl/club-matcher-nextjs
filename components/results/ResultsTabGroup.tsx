@@ -4,13 +4,18 @@ import { ClubWithScore, NULL_CLUB_WITH_SCORE } from "@/lib/club";
 import ResultsTabPanel from "@/components/results/ResultsTabPanel";
 import { FaStar } from "react-icons/fa6";
 
-export default function ResultsTabGroup({
-  loading,
-  data,
-}: {
+// 🔹 Add a Props type that includes onTagClick
+type Props = {
   loading: boolean;
   data: ClubWithScore[];
-}) {
+  onTagClick?: (tag?: string) => void;
+};
+
+export default function ResultsTabGroup({ 
+  loading, 
+  data, 
+  onTagClick 
+}: Props) {
   const [tabIndex, setTabIndex] = useState(0);
   const defaultData: ClubWithScore[] = [
     NULL_CLUB_WITH_SCORE,
@@ -43,29 +48,16 @@ export default function ResultsTabGroup({
           })}
         </Tab.List>
         <Tab.Panels className="mt-4 sm:mt-6">
-          {data.length > 0
-            ? data.map((club, index) => {
-                return (
-                  <ResultsTabPanel
-                    key={`panel-${index + 1}`}
-                    rank={index + 1}
-                    clubData={club}
-                    tabIndex={tabIndex}
-                    loading={loading}
-                  />
-                );
-              })
-            : defaultData.map((club, index) => {
-                return (
-                  <ResultsTabPanel
-                    key={`panel-${index + 1}`}
-                    rank={index + 1}
-                    clubData={club}
-                    tabIndex={tabIndex}
-                    loading={loading}
-                  />
-                );
-              })}
+          {(data.length > 0 ? data : defaultData).map((club, index) => (
+            <ResultsTabPanel
+              key={`panel-${index + 1}`}
+              rank={index + 1}
+              clubData={club}
+              tabIndex={tabIndex}
+              loading={loading}
+              onTagClick={onTagClick}
+            />
+          ))}
         </Tab.Panels>
       </Tab.Group>
     </div>
