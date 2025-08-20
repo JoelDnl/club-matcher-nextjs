@@ -82,7 +82,6 @@ export function manhattanSimilarityWeighted(a: unknown[], b: unknown[], w: numbe
 
 /** 
  * Plain Manhattan Distance similarity (unweighted).
- * Useful for comparison or when you don't want to use weights.
  */
 export function manhattanSimilarity(a: unknown[], b: unknown[]) {
   if (!Array.isArray(a) || !Array.isArray(b)) return 0;

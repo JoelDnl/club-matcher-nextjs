@@ -9,10 +9,8 @@ export async function POST(request: Request) {
   console.log('HIT POST /api/match');
   const data: number[] = await request.json();
 
-
   console.log('DEBUG answers:', data, 'len=', Array.isArray(data) ? data.length : 'NA');
 
-  
   let clubs: any[] = [];
 
   let q = query(collection(db, "clubs"));
