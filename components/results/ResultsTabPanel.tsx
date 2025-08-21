@@ -2,10 +2,10 @@ import { ClubWithScore } from "@/lib/club";
 import { FaGlobe, FaStore } from "react-icons/fa";
 import { FaAt } from "react-icons/fa6";
 import { GoTrophy } from "react-icons/go";
-import { IoPricetags } from "react-icons/io5";
 import { TabTransition } from "@/components/ui/Transition";
 import { Tab } from "@headlessui/react";
 import ProgressBar from "@/components/ui/ProgressBar";
+import TagClubsModal from "@/components/ui/TagClubsModal";
 
 export default function ResultsTabPanel({
   rank,
@@ -34,12 +34,7 @@ export default function ResultsTabPanel({
             {loading ? "Loading club name..." : clubData.name}
           </h2>
           <div className="flex flex-col sm:flex-row flex-wrap w-11/12 sm:max-w-2xl mx-auto justify-center items-center my-4 text-black text-opacity-90 text-lg sm:text-xl font-medium gap-2 sm:gap-4">
-            <div
-              className={`flex items-center justify-center bg-white text-western text-center border-2 border-western rounded px-3 py-2 leading-tight focus:outline-none w-2/3 lg:w-[45%]`}
-            >
-              <IoPricetags className="hidden sm:flex text-2xl mr-2" />
-              <span>{loading ? "Loading tag" : clubData.tag}</span>
-            </div>
+            <TagClubsModal tag={clubData.tag} currentEmail={clubData.email} loading={loading} />
             <ProgressBar percent={Math.trunc(matchPercent)} />
           </div>
           <p className="break-words sm:w-2/3 mx-auto text-center text-black text-opacity-90 text-lg sm:text-xl font-normal tracking-wide mt-4 sm:pt-2">

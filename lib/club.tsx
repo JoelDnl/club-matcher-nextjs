@@ -118,16 +118,14 @@ export async function updateClubQuiz({
   }
 }
 
-export function formatFirestoreClub(docData: DocumentData) {
-  let clubData: Club = NULL_CLUB;
-
-  clubData.name = docData["name"];
-  clubData.email = docData["email"];
-  clubData.storefront = docData["storefront"];
-  clubData.westernlink = docData["westernlink"];
-  clubData.description = docData["description"];
-  clubData.tag = docData["tag"];
-  clubData.quiz = docData["quiz"];
-
-  return clubData;
+export function formatFirestoreClub(docData: DocumentData): Club {
+  return {
+    name: docData["name"],
+    email: docData["email"],
+    storefront: docData["storefront"],
+    westernlink: docData["westernlink"],
+    description: docData["description"],
+    tag: docData["tag"],
+    quiz: docData["quiz"],
+  };
 }
