@@ -48,7 +48,7 @@ export const QuizData = [
   {
     id: 5,
     question:
-      "Would you be willing to spend money throughout the year to participate in special virtual events?",
+      "Would you be willing to spend money throughout the year to participate in special events?",
     options: [
       "I really hope to avoid spending additional money throughout the year.",
       "Maybe the rare occasion.",
